@@ -26,8 +26,8 @@ public class VentaController {
         return ResponseEntity.ok(new Response<>(result,"OK"));
     }
     
-    @GetMapping(path= "/consulta/{fecha}", produces = "application/json" )
-    public ResponseEntity<Response> listado(@PathVariable Date fecha){
+    @PostMapping(path= "/consulta", consumes = "application/json",produces = "application/json" )
+    public ResponseEntity<Response> consultaFecha(@RequestBody Date fecha){
         var result = service.consultaFecha(fecha);
         return ResponseEntity.ok(new Response<>(result,"OK"));
     }

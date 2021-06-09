@@ -41,4 +41,8 @@ public class Venta implements Serializable {
     
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "venta")
     private List<DetalleVenta> detalle;
+
+    public Venta(Long id) {
+        this.id = id;
+    }
 }

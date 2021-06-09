@@ -18,14 +18,26 @@ public class VentaService {
     VentaRepository repository;
     
     public Venta registro(Venta venta){
-        return repository.save(venta);
+        Venta newVenta = new Venta();
+        newVenta.setCliente(venta.getCliente());
+        newVenta.setFecha(venta.getFecha());
+        List<DetalleVenta> ldv = new ArrayList<>();
+        for(DetalleVenta dt : venta.getDetalle()){
+            DetalleVenta dtnew = new DetalleVenta();
+            dtnew.setVenta(newVenta);
+            dtnew.setProducto(dt.getProducto());
+            dtnew.setCantidad(dt.getCantidad());
+            ldv.add(dtnew);
+        }
+        newVenta.setDetalle(ldv);
+        return repository.save(newVenta);
     }
     
     public Optional<Venta> consultaId(Long id){
         return repository.findById(id);
     }
     
-    public Optional<Venta> consultaFecha(Date fecha){
+    public Iterable<Venta> consultaFecha(Date fecha){
         return repository.findByFecha(fecha);
     }
 }
