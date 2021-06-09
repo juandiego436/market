@@ -1,14 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.market.demo.service;
 
-/**
- *
- * @author JUANDIEGO
- */
+import com.market.demo.entity.Cliente;
+import com.market.demo.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class ClienteService {
+    
+    @Autowired
+    ClienteRepository repository;
+
+    public Cliente registro(Cliente cliente){
+        return repository.save(cliente);
+    }
+    
+    public Iterable<Cliente> listado(){
+        return repository.findAll();
+    }
     
 }

@@ -23,5 +23,11 @@ public class Producto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, unique = true)
-    private Integer id;
+    private Long id;
+    
+    @Column(name="nombre")
+    private String nombre;
+    
+    @Column(name="precio", columnDefinition = "decimal(10,2) DEFAULT '0.00'")
+    private Double precio;
 }
